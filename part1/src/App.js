@@ -1,69 +1,59 @@
 import React from "react"
 
-
-const Hello = (props) => {
-  return (
-    <div>
-      <p>
-        Hello {props.name}, you are {props.age} years old
-      </p>
-    </div>
-  )
-}
-
-const Footer = () => {
-  return (
-    <div>
-      greeting app created by <a href="https://github.com/mluukkai">mluukkai</a>
-    </div>
-  )
-}
-
-// const App = () => {
-//   const now = new Date()
-//   const a = 10
-//   const b = 20
-//   return React.createElement(
-//     'div',
-//     null,
-//     React.createElement(
-//       'p', null, 'Hello world, it is ', now.toString()
-//     ),
-//     React.createElement(
-//       'p', null, a, ' plus ', b, ' is ', a + b
-//     )
-//   )
-// }
-
-
 const App = () => {
-  const name = 'Zehan'
-  const age = 23
-  return [
-      <h1>Greetings</h1>,
-      <Hello age={age} name={name} />,
-      <Hello age={age+1} name="Vasant" />,
-      <Hello age={age+3} name="Anand" />,
-      <Hello age={age+4} name="Vivek" />,
-      <Hello age={age+3} name="Baljeet" />,
-      // <footer /> throw error
-      <Footer />
-    ]
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
+  const parts = [ part1, part2, part3 ];
+  const exercises = [ exercises1, exercises2, exercises3 ]
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={parts} exercises={exercises} />
+      <Total exercises={exercises}  />
+    </div>
+  )
 }
 
 
-// const App = () => {
-//   const name = 'Peter'
-//   const age = 10
+const Header = ( props ) => ( <h1>{props.course}</h1> )
 
-//   return (
-//     <>
-//       <h1>Greetings</h1>
-//       <Hello name="Maya" age={26 + 10} />
-//       <Hello name={name} age={age} />
-//       <Footer />
-//     </>
-//   )
+const Content = ( props ) => {
+  return <>
+    {props.parts.map((ele,i)=>{
+      return <div style={{display:"flex"}}>
+        <p>{ele}</p>
+        <p>{props.exercises[i]}</p>
+      </div>
+    })}
+  </>
+}
+
+const Total = ( props ) => {
+  return <>
+    <p>Number of exercises { props.exercises.reduce((acc,cv)=>acc+=cv,0) }</p>
+  </>
+}
+
+// {
+//   <div>
+//   <h1>{course}</h1>
+//   <p>
+//     {part1} {exercises1}
+//   </p>
+//   <p>
+//     {part2} {exercises2}
+//   </p>
+//   <p>
+//     {part3} {exercises3}
+//   </p>
+//   <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+// </div>
 // }
+
 
 export default App
