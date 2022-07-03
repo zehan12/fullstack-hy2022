@@ -46,6 +46,7 @@ const App = () => {
       <Hello age={age+3} name="Anand" />,
       <Hello age={age+4} name="Vivek" />,
       <Hello age={age+3} name="Baljeet" />,
+      // <footer /> throw error
       <Footer />
     ]
 }
