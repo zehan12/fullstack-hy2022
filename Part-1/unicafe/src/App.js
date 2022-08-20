@@ -10,9 +10,9 @@ const App = () => {
     <div>
       <h2>give feedback</h2>
       <div style={{ display: "flex" }}>
-        <button onClick={() => setGood(good + 1)} >good</button>
-        <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-        <button onClick={() => setBad(bad + 1)}>bad</button>
+        <Button fn={()=>setGood(good+1)} text={"good"}  />
+        <Button fn={()=>setNeutral(neutral+1)} text={"neutral"} />
+        <Button fn={()=>setBad(bad+1)} text={"bad"} />
       </div>
 
       <h2>statics</h2>
@@ -20,13 +20,17 @@ const App = () => {
         (good || neutral || bad) ?
           <>
             <Statistics text={"good"} val={good} />
-            <Statistics text={"bad"} val={bad} />
             <Statistics text={"neutral"} val={neutral} />
+            <Statistics text={"bad"} val={bad} />
           </>
           : <p>No feedback given</p>
       }
     </div>
   )
+}
+
+const Button = ( { text, fn } ) => {
+  return <button onClick={fn}>{text}</button>
 }
 
 const Statistics = ({ text, val }) => {
