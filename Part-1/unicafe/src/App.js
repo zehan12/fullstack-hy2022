@@ -17,14 +17,22 @@ const App = () => {
       </div>
 
       <h2>statics</h2>
-      <p>good: {good}</p>
-      <p>neutral: {neutral}</p>
-      <p>bad: {bad}</p>
+      <Statistics text={"good"} val={good} />
+      <Statistics text={"bad"} val={bad} />
+      <Statistics text={"neutral"} val={neutral} />
       <p>all: { total }</p>
-      <p>avarage: { good + 0 - bad / total }</p>
-      <p>percentage { good / total * 100 } </p>
+      <p>avarage: { good + 0 - bad / total || 0 }</p>
+      <p>percentage { good / total * 100 || 0} </p>
     </div>
   )
 }
+
+const Statistics = ({ text, val }) => {
+  // ...
+  return <div>
+      <p> {text}: {val}</p>
+  </div>
+}
+
 
 export default App
