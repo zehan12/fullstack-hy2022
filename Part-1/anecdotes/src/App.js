@@ -10,21 +10,28 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.'
   ]
-   
-  const [selected, setSelected] = useState(0)
 
- const  handleSelect = () => {
-  console.log(selected,anecdotes.length-1)
-  if ( selected  === anecdotes.length-1 ) return setSelected(0)
-    if ( selected < anecdotes.length ) return  setSelected(selected+1)
+  const [selected, setSelected] = useState(0)
+  const [vote, setVotes ] = useState( Array(anecdotes.length).fill(0) );
+
+  const handleSelect = () => {
+    if (selected === anecdotes.length - 1) return setSelected(0)
+    if (selected < anecdotes.length) return setSelected(selected + 1)
+  }
+
+  const handleVote = ( v ) => {
+    const arr = vote.map( (ele,i) =>  i === v ? ele + 1 : ele );
+    setVotes([...arr])
   }
 
   return (<>
     <div>
-      {anecdotes[selected]}
+      <p>{anecdotes[selected]}</p>
+      <p>vote :{vote[selected]}</p>
     </div>
-    <button  onClick={handleSelect}>next anecdotes</button>
-    </>
+    <button onClick={handleSelect}> next anecdotes </button>
+    <button onClick={()=>handleVote(selected)}> vote </button>
+  </>
   )
 }
 
