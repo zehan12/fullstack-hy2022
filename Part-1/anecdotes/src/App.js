@@ -12,25 +12,64 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
-  const [vote, setVotes ] = useState( Array(anecdotes.length).fill(0) );
+  const [vote, setVotes] = useState(Array(anecdotes.length).fill(0));
+  const [most, setMost] = useState(0);
+  const [mostIndex, setMostIndex] = useState("")
+
 
   const handleSelect = () => {
     if (selected === anecdotes.length - 1) return setSelected(0)
     if (selected < anecdotes.length) return setSelected(selected + 1)
   }
 
-  const handleVote = ( v ) => {
-    const arr = vote.map( (ele,i) =>  i === v ? ele + 1 : ele );
-    setVotes([...arr])
+  const handleVote = (v) => {
+    const copy = [...vote];
+    copy[v] += 1
+    let high = 0;
+    let index = 0;
+
+    for (let i = 0; i < copy.length; i++) {
+      if (high < copy[i]) {
+        high = copy[i];
+        index = i;
+       console.log("here", high)
+      }
+      console.log(high, copy[i], anecdotes[i])
+    }
+    setVotes([...copy]);
+    setMost(high);
+    setMostIndex(index);
+    
   }
 
+
+
+
   return (<>
+    <h1>Anecdotes of the day</h1>
     <div>
       <p>{anecdotes[selected]}</p>
-      <p>vote :{vote[selected]}</p>
+      <p>has votes :{vote[selected]}</p>
     </div>
     <button onClick={handleSelect}> next anecdotes </button>
-    <button onClick={()=>handleVote(selected)}> vote </button>
+    <button onClick={() => handleVote(selected)}> vote </button>
+
+    <div>
+      <h2>Anecdotes with most votes</h2>
+      <div>{anecdotes[vote.indexOf(Math.max(...vote))]}</div>
+      <div>has {Math.max(...vote)} votes</div>
+    </div>
+
+    {
+      most > 0 &&
+      <div>
+        <h2>Anecdotes with most votes</h2>
+        <div>{anecdotes[mostIndex]}</div>
+        <div>has {most} votes</div>
+      </div>
+
+    }
+
   </>
   )
 }
