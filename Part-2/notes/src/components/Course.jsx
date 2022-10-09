@@ -1,16 +1,12 @@
-import { Fragment } from "react"
-import Header from "./Header"
-import Content from "./Content"
-
-
+import Total from "./Total";
+import Content from "./Content";
 const Course = ({ course }) => {
-    console.log( Object.entries(course.parts),"kjdjf")
-    let parts =  Object.entries(course.parts)
     return (
-        <Fragment>
-            <Header header={course.name} />
-            <Content parts={parts} />
-        </Fragment>
+      <Fragment>
+        <Header heading={course.name} />
+        <Content parts={course.parts} />
+        <Total parts={course.parts} />
+      </Fragment>
     )
 }
 
