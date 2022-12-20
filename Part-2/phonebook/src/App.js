@@ -1,7 +1,8 @@
 import { Fragment, useState } from 'react';
 import axios from 'axios'
 import { useEffect } from 'react';
-
+import { getAllPerson } from "./services/persons";
+ 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('');
@@ -18,7 +19,7 @@ const App = () => {
   }
 
   const getPerson = async ( ) => {
-    const { data } = await axios.get("http://localhost:3001/persons");
+     const data  = await getAllPerson();
     return setPersons(data)
   }
 
