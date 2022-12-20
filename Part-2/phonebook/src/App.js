@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -43,4 +43,32 @@ const App = () => {
 
 }
 
+
 export default App
+
+const PersonForm = ({ handleSubmit }) => {
+  const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
+  <form>
+    <div>
+      name: <input type="name" value={newName} onChange={(e) => setNewName(e.target.value)} />
+      <br />
+      number: <input type="number" value={newNumber} onChange={(e) => setNewNumber(e.target.value)} />
+    </div>
+    <div>
+      <button onClick={(e) => handleSubmit(newName, newNumber)} type="submit">add</button>
+    </div>
+  </form>
+}
+
+const PersonList = (persons) => {
+  return (
+    <Fragment>
+      {
+        persons.length &&
+        persons.map((person) => (
+          < h4 > name: {person.name } number:{person.number}</h4>))
+      }
+    </Fragment >
+  )
+}
