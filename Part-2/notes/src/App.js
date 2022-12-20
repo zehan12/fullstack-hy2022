@@ -1,5 +1,6 @@
 import { Fragment } from "react"
-import Course from "./components/Course" 
+import Course from "./components/Course";
+import Parts from "./components/Parts";
 
 // const Part = ({part}) => (<p> {part.name} {part.exercises} </p>)
 
