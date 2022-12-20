@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import axios from "axios";
 import { useEffect } from 'react';
+// https://samples.openweathermap.org/data/2.5/weather?q=London&appid=b1b15e88fa797225412429c1c50c122a1
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -18,10 +19,18 @@ function App() {
   }
 
   const handleClick = (country) => {
-    console.log("clicked")
     setDisplay(country)
   }
 
+  // useEffect( ()=>{
+
+  // } )
+
+  const getWeather = async ( country ) => {
+    const data = await axios.get(`https://samples.openweathermap.org/data/2.5/weather?q=${country.toUpperCase()}&appid=b1b15e88fa797225412429c1c50c122a1
+    `)
+    console.log(data)
+  }
 
   const getAllCountries = async () => {
     const { data } = await axios.get("https://restcountries.com/v3.1/all")
@@ -30,6 +39,7 @@ function App() {
 
   useEffect(() => {
     getAllCountries()
+    getWeather("india")
   }, [])
 
   console.log(display)
